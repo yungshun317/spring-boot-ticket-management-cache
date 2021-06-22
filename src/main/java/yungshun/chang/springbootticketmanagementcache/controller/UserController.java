@@ -1,2 +1,11 @@
-package yungshun.chang.springbootticketmanagementcache.controller;public class UserController {
+package yungshun.chang.springbootticketmanagementcache.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+
 }
