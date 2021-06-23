@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
                 .findAny()
                 .orElseThrow(() -> new RuntimeException("Item not found"))
                 .setUsername(username);
+
+        users.stream()
+                .filter(x -> x.getUserid() == userid)
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Item not found"))
+                .setUpdatedDate(new Date());
     }
 
     @Override
