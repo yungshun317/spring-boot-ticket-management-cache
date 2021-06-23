@@ -1,5 +1,7 @@
 package yungshun.chang.springbootticketmanagementcache.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -13,6 +15,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
@@ -30,9 +34,12 @@ public class UserController {
         User user = userService.getUser(id);
         long updated = user.getUpdatedDate().getTime();
         boolean isNotModified = webRequest.checkNotModified(updated);
+        logger.info("{getUser} isNotModified : " + isNotModified);
         if (isNotModified) {
+            logger.info("{getUser} resource not modified since last call, so exiting");
             return null;
         }
+        logger.info("{getUser} resource modified since last call, so get the updated content");
 
         return userService.getUser(id);
     }
