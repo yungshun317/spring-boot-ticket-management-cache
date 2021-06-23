@@ -2,6 +2,7 @@ package yungshun.chang.springbootticketmanagementcache.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import yungshun.chang.springbootticketmanagementcache.model.User;
 import yungshun.chang.springbootticketmanagementcache.service.UserService;
 
@@ -24,7 +25,15 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/{id}")
-    public User getUser(@PathVariable("id") Integer id) {
+    public User getUser(@PathVariable("id") Integer id, WebRequest webRequest) {
+
+        User user = userService.getUser(id);
+        long updated = user.getUpdatedDate().getTime();
+        boolean isNotModified = webRequest.checkNotModified(updated);
+        if (isNotModified) {
+            return null;
+        }
+
         return userService.getUser(id);
     }
 
