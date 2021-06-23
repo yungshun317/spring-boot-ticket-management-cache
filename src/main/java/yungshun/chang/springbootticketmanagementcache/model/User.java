@@ -1,8 +1,13 @@
 package yungshun.chang.springbootticketmanagementcache.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    public User() {}
 
     private Integer userid;
     private String username;
@@ -45,6 +50,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userid=" + userid + ", username=" + username + "]";
+        return "User [userid=" + userid + ", username=" + username + ", updatedDate=" + updatedDate + "]";
     }
 }
