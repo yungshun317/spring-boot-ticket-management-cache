@@ -1,13 +1,30 @@
 package yungshun.chang.springbootticketmanagementcache.model;
 
+import java.util.Date;
+
 public class User {
 
     private Integer userid;
     private String username;
+    private Date updatedDate;
 
     public User(Integer userid, String username) {
         this.userid = userid;
         this.username = username;
+    }
+
+    public User(Integer userid, String username, Date updatedDate) {
+        this.userid = userid;
+        this.username = username;
+        this.updatedDate = updatedDate;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public Integer getUserid() {
